@@ -163,22 +163,22 @@ function generateTeamFile() {
 
         if (role === "Manager") {
             empCard = generateManagerCard(employee.name, employee.id, employee.email, employee.officeNumber);
-        } else if (role === "Intern") {
-            empCard = generateInternCard(employee.name, employee.id, employee.email, employee.school);
         } else if (role === "Engineer") {
             empCard = generateEngineerCard(employee.name, employee.id, employee.email, employee.github)
+        } else if (role === "Intern") {
+            empCard = generateInternCard(employee.name, employee.id, employee.email, employee.school)
         }
         $("#employeeCards").append(empCard);
     });
 
-    fs.writeFile("./team_output.html", $.html(), function(error){
+    fs.writeFile("./generated-team.html", $.html(), function(error){
         if (error)
             console.log(error);
     });
 }
 
 function generateManagerCard(name, id, email, officeNumber) {
-    return `<div class="card m-2" style="width: 18rem;">
+    return `<div class="card m-2" style="width: 20rem;">
     <div class="card-body bg-primary text-white">
       <h5 class="card-title">${name}</h5>
       <h5 class="card-title">Manager</h5>
@@ -186,27 +186,13 @@ function generateManagerCard(name, id, email, officeNumber) {
     <ul class="list-group list-group-flush">
       <li class="list-group-item">Id: ${id}</li>
       <li class="list-group-item">Email: <a href="mailto:${email}" class="card-link">${email}</a></li>
-      <li class="list-group-item">RoomNumber: ${officeNumber}</li>
-    </ul>
-    </div>`
-}
-
-function generateInternCard(name, id, email, school) {
-    return `<div class="card m-2" style="width: 18rem;">
-    <div class="card-body bg-primary text-white">
-      <h5 class="card-title">${name}</h5>
-      <h5 class="card-title">Intern</h5>
-    </div>
-    <ul class="list-group list-group-flush">
-      <li class="list-group-item">Id: ${id}</li>
-      <li class="list-group-item">Email: <a href="mailto:${email}" class="card-link">${email}</a></li>
-      <li class="list-group-item">School: ${school}</li>
+      <li class="list-group-item">Room Number: ${officeNumber}</li>
     </ul>
     </div>`
 }
 
 function generateEngineerCard(name, id, email, github) {
-    return `<div class="card m-2" style="width: 18rem;">
+    return `<div class="card m-2" style="width: 20rem;">
     <div class="card-body bg-primary text-white">
       <h5 class="card-title">${name}</h5>
       <h5 class="card-title">Engineer</h5>
@@ -215,6 +201,20 @@ function generateEngineerCard(name, id, email, github) {
       <li class="list-group-item">Id: ${id}</li>
       <li class="list-group-item">Email: <a href="mailto:${email}" class="card-link">${email}</a></li>
       <li class="list-group-item">Github: <a href="https://github.com/${github}" class="card-link">${github}</a></li>
+    </ul>
+    </div>`
+}
+
+function generateInternCard(name, id, email, school) {
+    return `<div class="card m-2" style="width: 20rem;">
+    <div class="card-body bg-primary text-white">
+      <h5 class="card-title">${name}</h5>
+      <h5 class="card-title">Intern</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Id: ${id}</li>
+      <li class="list-group-item">Email: <a href="mailto:${email}" class="card-link">${email}</a></li>
+      <li class="list-group-item">School: ${school}</li>
     </ul>
     </div>`
 }
